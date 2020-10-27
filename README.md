@@ -63,14 +63,14 @@ confess <...Your confession>
 
 Default prefix is `?`
 
-| Name      | Description                        | Usage                                           | Required Permission to run |
-| --------- | ---------------------------------- | ----------------------------------------------- | -------------------------- |
-| set       | Sets the channels                  | `set <logChannel|confessionChannel> <#Channel>` | Manage Guild/Manage Server |
-| setprefix | Sets the bot's prefix              | `setprefix <prefix>`                            | Manage Guild/Manage Server |
-| toggle    | Toggles to turn on/off confessions | `toggle`                                        | Manage Guild/Manage Server |
-| ban       | Ban someone from confessing        | `ban <User>`                                    | Ban Members                |
-| unban     | Unbans someone from confessing     | `unban <User>`                                  | Ban Members                |
-| ping      | pong!                              | `ping`                                          | Any                        |
+| Name      | Description                        | Usage                                                  | Required Permission to run |
+| --------- | ---------------------------------- | ------------------------------------------------------ | -------------------------- |
+| set       | Sets the channels                  | `set <'logChannel' or 'confessionChannel'> <#Channel>` | Manage Guild/Manage Server |
+| setprefix | Sets the bot's prefix              | `setprefix <prefix>`                                   | Manage Guild/Manage Server |
+| toggle    | Toggles to turn on/off confessions | `toggle`                                               | Manage Guild/Manage Server |
+| ban       | Ban someone from confessing        | `ban <User>`                                           | Ban Members                |
+| unban     | Unbans someone from confessing     | `unban <User>`                                         | Ban Members                |
+| ping      | pong!                              | `ping`                                                 | Any                        |
 
 ## Author
 
