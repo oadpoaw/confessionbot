@@ -28,7 +28,7 @@ Create a file named `.env` containing the following:
 ```
 DISCORD_TOKEN=YourDiscordBotTokenHere
 ```
-Remember to replace `YourDiscordBotTokenHere` with you bot's token
+Remember to replace `YourDiscordBotTokenHere` with your bot's token
 
 ### Starting the bot
 ```sh
