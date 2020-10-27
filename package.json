@@ -1,0 +1,33 @@
+{
+  "name": "confessionbot",
+  "version": "1.0.0",
+  "description": "confessionbot",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "node .",
+    "build": "tsc --build",
+    "dbInit": "node dist/database/database.js --dbInit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oadpoaw/confessionbot.git"
+  },
+  "author": "oadpoaw",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oadpoaw/confessionbot/issues"
+  },
+  "homepage": "https://github.com/oadpoaw/confessionbot#readme",
+  "dependencies": {
+    "@types/node": "^14.14.2",
+    "@types/ws": "^7.2.7",
+    "discord.js": "^12.4.0",
+    "dotenv": "^8.2.0",
+    "moment": "^2.29.1",
+    "ms": "^2.1.2",
+    "pretty-ms": "^7.0.1",
+    "sequelize": "^6.3.5",
+    "sqlite3": "^5.0.0"
+  }
+}
