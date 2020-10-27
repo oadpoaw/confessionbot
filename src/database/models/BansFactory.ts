@@ -17,7 +17,7 @@ export default function BansFactory(sequelize: Sequelize) {
         }
         public static async info(id: string) {
             const user = await Bans.findOne({ where: { id }});
-            return user ? user.toJSON() : null;
+            return user ? true : false;
         }
     }
     Bans.init({

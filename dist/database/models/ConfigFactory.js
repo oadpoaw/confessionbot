@@ -1,69 +1,74 @@
-import { DataTypes, Sequelize, Model } from 'sequelize';
-
-export default function ConfigFactory(sequelize: Sequelize) {
-    class Config extends Model {
-        public id!: string;
-        public prefix!: string;
-        public logChannel!: string;
-        public confessionChannel!: string;
-        public count!: number;
-        public enabled!: boolean;
-        public static async getConfig() {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const sequelize_1 = require("sequelize");
+function ConfigFactory(sequelize) {
+    class Config extends sequelize_1.Model {
+        static async getConfig() {
             let guild = await Config.findOne({ where: { id: 'main' } });
-            if (!guild) guild = await Config.create({ id: 'main' });
+            if (!guild)
+                guild = await Config.create({ id: 'main' });
             return guild;
         }
-        public static async enabled() {
+        static async enabled() {
             let guild = await Config.findOne({ where: { id: 'main' } });
-            if (!guild) guild = await Config.create({ id: 'main' });
+            if (!guild)
+                guild = await Config.create({ id: 'main' });
             return guild.enabled;
         }
-        public static async toggle() {
+        static async toggle() {
             let guild = await Config.findOne({ where: { id: 'main' } });
-            if (!guild) guild = await Config.create({ id: 'main' });
+            if (!guild)
+                guild = await Config.create({ id: 'main' });
             guild.enabled = !guild.enabled;
             await guild.save();
             return guild.enabled;
         }
-        public static async getCount() {
+        static async getCount() {
             let guild = await Config.findOne({ where: { id: 'main' } });
-            if (!guild) guild = await Config.create({ id: 'main' });
+            if (!guild)
+                guild = await Config.create({ id: 'main' });
             guild.count++;
             await guild.save();
             return guild.count;
         }
-        public static async getPrefix() {
+        static async getPrefix() {
             let guild = await Config.findOne({ where: { id: 'main' } });
-            if (!guild) guild = await Config.create({ id: 'main' });
+            if (!guild)
+                guild = await Config.create({ id: 'main' });
             return guild.prefix;
         }
-        public static async setPrefix(prefix: string) {
+        static async setPrefix(prefix) {
             let guild = await Config.findOne({ where: { id: 'main' } });
-            if (!guild) guild = await Config.create({ id: 'main' });
+            if (!guild)
+                guild = await Config.create({ id: 'main' });
             guild.prefix = prefix;
             await guild.save();
             return guild.prefix;
         }
-        public static async getlogChannel() {
+        static async getlogChannel() {
             let guild = await Config.findOne({ where: { id: 'main' } });
-            if (!guild) guild = await Config.create({ id: 'main' });
+            if (!guild)
+                guild = await Config.create({ id: 'main' });
             return guild.logChannel;
         }
-        public static async setlogChannel(logChannel: string) {
+        static async setlogChannel(logChannel) {
             let guild = await Config.findOne({ where: { id: 'main' } });
-            if (!guild) guild = await Config.create({ id: 'main' });
+            if (!guild)
+                guild = await Config.create({ id: 'main' });
             guild.logChannel = logChannel;
             await guild.save();
             return guild.logChannel;
         }
-        public static async getconfessionChannel() {
+        static async getconfessionChannel() {
             let guild = await Config.findOne({ where: { id: 'main' } });
-            if (!guild) guild = await Config.create({ id: 'main' });
+            if (!guild)
+                guild = await Config.create({ id: 'main' });
             return guild.logChannel;
         }
-        public static async setconfessionChannel(confessionChannel: string) {
+        static async setconfessionChannel(confessionChannel) {
             let guild = await Config.findOne({ where: { id: 'main' } });
-            if (!guild) guild = await Config.create({ id: 'main' });
+            if (!guild)
+                guild = await Config.create({ id: 'main' });
             guild.confessionChannel = confessionChannel;
             await guild.save();
             return guild.confessionChannel;
@@ -71,32 +76,32 @@ export default function ConfigFactory(sequelize: Sequelize) {
     }
     Config.init({
         id: {
-            type: DataTypes.STRING,
+            type: sequelize_1.DataTypes.STRING,
             unique: true,
             primaryKey: true,
         },
         prefix: {
-            type: DataTypes.STRING,
+            type: sequelize_1.DataTypes.STRING,
             allowNull: false,
             defaultValue: '?',
         },
         logChannel: {
-            type: DataTypes.STRING,
+            type: sequelize_1.DataTypes.STRING,
             allowNull: false,
             defaultValue: '',
         },
         confessionChannel: {
-            type: DataTypes.STRING,
+            type: sequelize_1.DataTypes.STRING,
             allowNull: false,
             defaultValue: '',
         },
         count: {
-            type: DataTypes.NUMBER,
+            type: sequelize_1.DataTypes.NUMBER,
             allowNull: false,
             defaultValue: 0,
         },
         enabled: {
-            type: DataTypes.BOOLEAN,
+            type: sequelize_1.DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false,
         }
@@ -106,3 +111,4 @@ export default function ConfigFactory(sequelize: Sequelize) {
     });
     return Config;
 }
+exports.default = ConfigFactory;

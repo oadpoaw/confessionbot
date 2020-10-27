@@ -14,14 +14,14 @@ export default class MessageEvent extends Event {
     }
     public async exec(message: Message) {
         if (message.author.bot) return;
-        if (message.channel.type !== 'text' || !message.guild) {
+        if (message.channel.type === 'dm') {
             let allowConfession = true;
             const config = await Config.getConfig();
-            if (message.content.startsWith('?confess')) {
-                const confession = message.content.slice(8);
+            if (message.content.startsWith('?confess ')) {
+                const confession = message.content.slice(9).split(/ +/g).join(' ');
                 if (!confession) allowConfession = false;
                 if (allowConfession && !config.enabled) allowConfession = false;
-                if (allowConfession && await Bans.info(message.author.id)) allowConfession = false;
+                if (allowConfession && (await Bans.info(message.author.id))) allowConfession = false;
                 if (allowConfession && ConfessionCooldowns.has(message.author.id)) allowConfession = false;
                 if (allowConfession) {
                     ConfessionCooldowns.set(message.author.id, true);
@@ -29,7 +29,7 @@ export default class MessageEvent extends Event {
                 }
             } else allowConfession = false;
             if (allowConfession) {
-                const confession = message.content.slice(8);
+                const confession = message.content.slice(9).split(/ +/g).join(' ');
                 const count = await Config.getCount();
                 const id1 = config.confessionChannel;
                 const id2 = config.logChannel;
@@ -39,14 +39,15 @@ export default class MessageEvent extends Event {
                     .setDescription(confession)
                     .setURL('https://oadpoaw.xyz/')
                     .setTimestamp()
-                const confessionChannel = this.client.channels.cache.get(id1) as TextChannel;
-                const logChannel = this.client.channels.cache.get(id2) as TextChannel;
+                const confessionChannel = await this.client.channels.fetch(id1) as TextChannel;
+                const logChannel = await this.client.channels.fetch(id2) as TextChannel;
                 if (confessionChannel) await confessionChannel.send(embed);
                 embed.setAuthor(`${message.author.tag} / ${message.author.id}`, message.author.displayAvatarURL({ dynamic: true }));
                 if (logChannel) await logChannel.send(embed);
+                await message.channel.send(`Your confession has been sent! <#${confessionChannel.id}>`);
             }
-            return;
         };
+        if (message.channel.type !== 'text') return;
         if (!message.channel.permissionsFor(message.guild.me).has(['SEND_MESSAGES'])) return;
         if (!message.member) await message.member.fetch().catch(() => { });
         const prefixRegex = new RegExp(`^(<@!?${this.client.user.id}>|${Utils.escapeRegex(await Config.getPrefix())})\\s*`);
