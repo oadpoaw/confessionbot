@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/oadpoaw/confessionbot#readme",
   "dependencies": {
-    "@types/node": "^14.14.6",
+    "@types/node": "^14.14.13",
     "@types/validator": "^13.1.0",
     "discord.js": "^12.4.1",
     "@types/ws": "^7.2.9",
