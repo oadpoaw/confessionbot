@@ -22,7 +22,7 @@
   "dependencies": {
     "@types/node": "^14.14.14",
     "@types/validator": "^13.1.0",
-    "discord.js": "^12.4.1",
+    "discord.js": "^12.5.1",
     "@types/ws": "^7.2.9",
     "dotenv": "^8.2.0",
     "moment": "^2.29.1",
